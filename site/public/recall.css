@@ -1,0 +1,13 @@
+form{
+  display: inline-block;
+  vertical-align: top;
+}
+table{
+  margin: 1em;
+  display: inline-block;
+  vertical-align: top;
+}
+
+main{
+  text-align: center
+}

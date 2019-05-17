@@ -1,0 +1,19 @@
+/*Index page specific style information*/
+section.top{
+  width: 92%;
+  margin: 1% 0 1% 0;
+}
+
+section.left,section.right{
+  width: 44%;
+  text-align: justify;
+}
+
+section.left{
+  float: left;
+  margin: 0 2% 0 0;
+}
+section.right{
+  float: right;
+  margin: 0 0 0 2%;
+}

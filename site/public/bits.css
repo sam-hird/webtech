@@ -1,0 +1,64 @@
+/*style information regarding the header, footer and nav bar*/
+body{
+  padding: 0; margin: 0;
+  min-width: 640px;
+  background-color: #eee;
+}
+
+/*top and bottom of page*/
+header, footer{
+  font-family: sans-serif;
+  padding: 0; margin: 0;
+  width: 100%;
+}
+
+header{
+  height: 5em;
+  text-align: center;
+  background-color: #aaa;
+}
+
+footer{
+  height: 2.5em;
+  clear: both;
+  background-color: #aaa;
+  text-align: right;
+}
+
+a.title{
+  text-decoration: none;
+  color: black;
+}
+
+/*navigation bar*/
+nav{
+  font-family: sans-serif;
+  width: 100%;
+  background-color: #333;
+  height: auto;
+  overflow: hidden;
+}
+/*default appearance of nav buttons*/
+nav a{
+  float: left;
+  display: block;
+  font-size: 1.2em;
+  color: white;
+  text-decoration: none;
+  padding: 0.5em;
+  margin: 0.1em;
+  font-weight: bold;
+}
+/*does something on hover*/
+nav a:hover{
+  color: black;
+  background-color: white;
+}
+
+
+main{
+  font-family: sans-serif;
+  width: 92%;
+  margin: 4%;
+  overflow: overlay;
+}

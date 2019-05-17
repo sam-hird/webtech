@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+lang="en-GB" xml:lang="en-GB">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Index Page</title>
+     <link rel="stylesheet" type="text/css" href="bits.css" />
+     <link rel="stylesheet" type="text/css" href="input.css" />
+  </head>
+  <body>
+    
+    <header>
+      <img>
+      <h1><a class="title" href="index.html">Example site</a></h1>
+    </header>
+    
+    <nav>
+      <a href="input.html">Input form</a>
+      <a href="recall.html">Recall form</a>
+      <a href="image.html">Image display</a>
+      <a href="script.html">Script page</a>
+    </nav>
+    
+    <main>
+      <h1>Sign Up, It's Free!</h1>
+      <form id="input-form" action="input-data.js" method="post">
+        <fieldset>
+          <p id="title">
+            <label class="fieldname">Title:</label><br>
+            <input type="radio" name="title" value="mr">
+            <label>Mr</label>
+            <input type="radio" name="title" value="mrs">
+            <label>Mrs</label>
+            <input type="radio" name="title" value="miss">
+            <label>Miss</label>
+          </p>
+
+          <p>
+            <label class="fieldname">First Name:</label><br>
+            <input class="textbox" type=text name="firstname" placeholder="Enter First Name">
+          </p>
+
+          <p>
+            <label class="fieldname">Surname:</label><br>
+            <input class="textbox" type="text" name="surname" placeholder="Enter Surname">
+          </p>
+
+          <p>
+            <label class="fieldname">Email:</label><br>
+            <input class="textbox" type=email name="email" placeholder="Enter Email">
+          </p>
+
+          <p>
+            <label class="fieldname">Password:</label><br>
+            <input class="textbox" type="password" name="password" placeholder="Enter Password"><br>
+            <label id="password-label">Passwords must contain at least 8 characters</label>
+          </p>
+
+          <p>
+            <input type="Submit" value="Sign Up">
+          </p>
+        </fieldset>
+      </form>
+    </main>
+    
+    <footer>
+      some copright crap  or whatever
+    </footer>
+    
+  </body>
+</html>

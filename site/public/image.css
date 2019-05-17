@@ -1,0 +1,21 @@
+#image{
+  display: inline;
+  margin: 0 auto;
+}
+h1{
+  text-align: center;
+}
+.arrow{
+  width: 5em;
+  height: 5em;
+  vertical-align:middle;
+  border: 1px solid black;
+}
+img{
+  display: inline;
+  margin: 0 auto;
+  vertical-align: middle;
+}
+div{
+  text-align: center;
+}
