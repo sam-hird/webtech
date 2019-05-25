@@ -1,0 +1,123 @@
+main {
+  width: 100%; min-height: 100%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+h1{
+  font-size: 5em;
+}
+
+#type-options{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+label.type-selection {
+  font-size: 3em;
+  background-color: lightgray;
+  color: black;
+  padding: 0.5em 1em;
+  margin: 0 0.1em;
+  border-radius: 1.5em;
+  user-select: none;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+input[type="radio"]:checked + label {
+  background-color: darkslategrey;
+  color: white;
+}
+
+#create-task-form{
+  background-color: grey;
+  padding: 1em;
+  margin: 1em;
+  align-self: center;
+  width: 50%;
+  font-size: 2em;
+  
+  display: none;
+  flex-direction: column;
+  align-items: baseline;
+}
+
+form>label{
+  line-height: 0;
+}
+
+#create-goal-form{
+  background-color: grey;
+  padding: 1em;  margin: 1em;
+  width: 50%;
+  font-size: 2em;
+  
+  align-self: center;
+  
+  display: none;
+  flex-direction: column;
+  align-items: baseline;
+}
+
+#create-project-form{
+  background-color: grey;
+  padding: 1em;  margin: 1em;
+  width: 50%;
+  font-size: 2em;
+  
+  align-self: center;
+  
+  display: none;
+  flex-direction: column;
+  align-items: baseline;
+}
+
+.task{
+  font-size: 1em;
+}
+.goal{
+  font-size: 1em;
+}
+.project{
+  font-size: 1em;
+}
+.name{
+  width: 100%;
+  padding-left: 0.2em;
+  box-sizing: border-box;
+}
+.notes{
+  width: 100%;
+  padding-left: 0.2em;
+  box-sizing: border-box;
+}
+.submit{
+  font-size: .5em;
+  padding: 0.5em 1em;  
+}
+.file{
+  font-size: 0.5em;
+  width: 100%;
+}
+.goal-task{
+  width: 100%;
+  font-size: 1em;
+  padding-left: 0.2em;
+  box-sizing: border-box;
+}
+.project-goal{
+  width: 100%;
+  font-size: 1em;
+  padding-left: 0.2em;
+  box-sizing: border-box;
+}
+
+

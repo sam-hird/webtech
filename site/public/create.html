@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+lang="en-GB" xml:lang="en-GB">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Create</title>
+    
+    <link rel="stylesheet" type="text/css" href="style/header-and-nav.css">
+    <link rel="stylesheet" type="text/css" href="style/create.css">
+    
+    <script src="scripts/handlebars-v4.1.2.js"></script>
+    <script src="templates/headernav.js"></script>
+    <script src="templates/today.js"></script>
+    
+  </head>
+  <body>
+    
+    <main>
+      <h1>Create:</h1>
+      <div id="type-options">
+        
+        <input type="radio" id="task-button" name="type-radio" onclick="showTaskForm()">
+        <label class="type-selection" for="task-button">Task</label>
+        
+        <input type="radio" id="goal-button" name="type-radio" onclick="showGoalForm()">
+        <label class="type-selection" for="goal-button">Goal</label>
+        
+        <input type="radio" id="project-button" name="type-radio" onclick="showProjectForm()">
+        <label class="type-selection" for="project-button">Project</label>
+        
+      </div>
+      
+      <form id="create-task-form" action="/create/task.js">
+        
+        <label for="task-name">Name:</label><br>
+        <input id="task-name" class="task name" type="text"><br>
+        
+        <label for="task-due">Due:</label><br>
+        <input id="task-due" class="task due" type="date"><br>
+        
+        <input id="task-submit" class="task submit" type="submit">
+        
+      </form>
+      
+      <form id="create-goal-form" action="/create/goal.js">
+        
+        <label for="goal-name">Name:</label><br>
+        <input id="goal-name" class="goal name" type="text"><br>
+        
+        <label for="goal-notes">Notes:</label><br>
+        <textarea id="goal-notes" class="goal notes" rows="3" maxlength="2000"></textarea><br>
+        
+        <label for="goal-due">Due:</label><br>
+        <input id="goal-due" class="goal due" type="date"><br>
+        
+        <label >Tasks:</label><br>
+        <input class="goal-task" type="text" placeholder="Add a task..." onclick="taskAdder(this)" onfocus="taskAdder(this)" > <br>
+         
+        <input id="goal-submit" class="goal submit" type="submit" value="Go">
+        
+      </form>
+      
+      <form id="create-project-form" action="/create/project.js">
+         
+        <label for="project-name">Name:</label><br>
+        <input id="project-name" class="project name" type="text"><br>
+        
+        <label for="project-notes">Description:</label><br>
+        <textarea id="project-notes" class="project notes" rows="3" maxlength="2000"></textarea><br>
+        
+        <label for="project-files">Files:</label><br>
+        <input id="project-files" class="project file" type="file" multiple="true"><br>
+        
+        <label >Goals:</label><br>
+        <input class="project-goal" type="text" placeholder="Add a Goal..." onclick="goalAdder(this)" onfocus="goalAdder(this)" > <br>
+         
+        <input id="project-submit" class="project submit" type="submit" value="Go">
+        
+      </form>
+      
+    </main>
+    
+    <script type="text/javascript" src="scripts/create.js"></script>
+    
+    <script src="scripts/add-header.js" type="text/javascript"></script>
+    
+  </body>
+</html>

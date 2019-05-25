@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+lang="en-GB" xml:lang="en-GB">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard</title>
+    
+    <link rel="stylesheet" type="text/css" href="style/progress-circle.css">
+    <link rel="stylesheet" type="text/css" href="style/dashboard.css">
+    <link rel="stylesheet" type="text/css" href="style/header-and-nav.css">
+    
+    <script src="scripts/handlebars-v4.1.2.js"></script>
+    
+    <script src="templates/circle.js"></script>
+    <script src="templates/form.js"></script>
+    <script src="templates/headernav.js"></script>
+    <script src="templates/today.js"></script>
+    
+  </head>
+  <body>
+    
+    <main>
+      
+      <article>
+        
+        <section id="today-section">
+          <h2>Today's tasks:</h2>
+          <div class="circle-list-container"></div>
+        </section>
+        
+        <section id="projects-section">
+          <h2>Your Projects:</h2>
+          <div id="projects-container"></div>
+        </section>
+        
+      </article>
+      
+      <aside id="statistics">
+        <h2>Statistics:</h2>
+        <div id="total-complete"></div>
+        <div class="circle" id="average-circle"></div>
+        <div class="circle" id="30days-circle"></div>
+      </aside>
+      
+    </main>
+
+    <script src="scripts/generate-today.js"></script>
+   
+    <script src="scripts/add-header.js"type="text/javascript">
+    </script>
+    
+  </body>
+</html>

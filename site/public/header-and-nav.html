@@ -1,53 +1,73 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 lang="en-GB" xml:lang="en-GB">
+  
   <head>
     <meta charset="UTF-8"/>
     <title>Put Title Here</title>
-    <link rel="stylesheet" type="text/css" href="header-and-nav.css">
+    <link rel="stylesheet" type="text/css" href="style/header-and-nav.css">
   </head>
+  
   <body>
-    <header>
-      <a>
-        <svg id="hamburger-button"></svg>
-      </a>
-      <a>
-        <img id="header-logo">
-      </a>
-      <form id="header-search-form">
-        <input id="search-bar" type="text" placeholder=" Search">
-        <input id="search-button" type="submit" value="Go">
-      </form>
-      <div id="account-details-container">
-        <label>account name</label>
-        <img id="account-image">
+    
+    <div id="total-container">
+      
+      <header>
+        
+        <a>
+          <img id="header-logo">
+        </a>
+        
+        <form id="header-search-form">
+          <input id="search-bar" type="text" placeholder=" Search">
+          <input id="search-button" type="submit" value="Go">
+        </form>
+        
+        <div id="account-details-container">
+          <label>account name</label>
+          <img id="account-image">
+        </div>
+        
+      </header>
+      
+      <div id="under-header">
+        
+        <nav>
+          
+          <a><div class="nav-element">
+            <img class="nav-icon">
+            <lable>Dashboard</lable>
+          </div></a>
+          
+          <a><div class="nav-element">
+            <img class="nav-icon">
+            <lable>Schedule</lable>
+          </div></a>
+          
+          <a><div class="nav-element">
+            <img class="nav-icon">
+            <lable>Projects</lable>
+          </div></a>
+          
+          <a><div class="nav-element">
+            <img class="nav-icon">
+            <lable>Settings</lable>
+          </div></a>
+          
+          <footer id="nav-footer">
+            Some Copyright stuff @ 2019
+          </footer>
+          
+        </nav>
+        
+        <main>
+          <!--main page content goes here-->
+        </main>
+        
       </div>
-    </header>
-    <div id="main-container">
-      <nav>
-        <a><div class="nav-element">
-          <img class="nav-icon">
-          <lable>Dashboard</lable>
-        </div></a>
-        <a><div class="nav-element">
-          <img class="nav-icon">
-          <lable>Schedule</lable>
-        </div></a>
-        <a><div class="nav-element">
-          <img class="nav-icon">
-          <lable>Projects</lable>
-        </div></a>
-        <a><div class="nav-element">
-          <img class="nav-icon">
-          <lable>Settings</lable>
-        </div></a>
-        <footer id="nav-footer">
-          Some Copyright stuff @ 2019
-        </footer>
-      </nav>
-      <main>
-
-      </main>
+      
     </div>
+    
   </body>
+  
 </html>
