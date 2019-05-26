@@ -1,11 +1,11 @@
 {{#each goals}}
   <label class="goal">{{name}}</label><br>
   {{#each tasks}}
-    <input class="goal-task" type="checkbox" name="{{index}}" id="{{index}}" onclick="toggleTask({{index}});render();" {{#if complete}} checked {{/if}}>
-    <label for="{{index}}">{{task}}</label><br>
+    <input class="goal-task" type="checkbox" name="{{id}}" id="{{id}}" onclick="toggleTask({{id}});render();" {{#if complete}} checked {{/if}}>
+    <label for="{{id}}">{{name}}</label><br>
   {{/each}}
 {{/each}}
 {{#each tasks}}
-  <input type="checkbox" name="{{index}}" id="{{index}}" onclick="toggleTask({{index}});render();" {{#if complete}} checked {{/if}}>
-  <label for="{{index}}">{{task}}</label><br>
+  <input type="checkbox" name="{{id}}" id="{{id}}" onclick="toggleTask({{id}});render();" {{#if complete}} checked {{/if}}>
+  <label for="{{id}}">{{name}}</label><br>
 {{/each}}

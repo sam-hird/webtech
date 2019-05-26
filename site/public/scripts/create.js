@@ -1,3 +1,5 @@
+var taskCounter = 0;
+
 
 function checkFull(element){
   if (element.value.trim() == ""){
@@ -10,6 +12,7 @@ function taskAdder(element){
   var newNode = document.createElement('input');
   newNode.setAttribute('type','text');
   newNode.setAttribute('onblur','checkFull(this)');
+  newNode.setAttribute('name', 'task[' + taskCounter++ + ']');
   newNode.classList.add('goal-task');
   newNode.addEventListener("keypress", function(event) {
     if (event.key === "Enter" ) {

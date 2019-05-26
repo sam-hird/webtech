@@ -1,0 +1,49 @@
+
+.circle-list-container{  
+  flex-grow: 1;
+  flex-shrink: 1;
+  min-height: 0;
+  
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+#projects-container{
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.circle{
+  flex-grow: 1;
+  flex-shrink: 1;
+  max-width: 20em;
+  min-width: 5em;
+  padding: 0.5em;
+  align-self: center;
+}
+.checklist{
+  font-size: 2em;
+  margin-left: 2em;
+  padding: 0 1em;
+  
+  flex: 0 1 auto;
+  overflow: auto;
+  
+}
+
+.goal{
+  text-decoration: underline;
+}
+
+.goal-task{
+  margin-left: 2em;
+}
+
+h2{
+  text-decoration: underline;
+  font-size: 2em;
+  padding: 0;
+  margin: 0;
+}

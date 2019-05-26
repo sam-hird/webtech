@@ -8,10 +8,15 @@ lang="en-GB" xml:lang="en-GB">
     
     <link rel="stylesheet" type="text/css" href="style/header-and-nav.css">
     <link rel="stylesheet" type="text/css" href="style/schedule.css">
+    <link rel="stylesheet" type="text/css" href="style/progress-circle.css">
+    <link rel="stylesheet" type="text/css" href="style/taskview.css">
     
     <script src="scripts/handlebars-v4.1.2.js"></script>
+    
+    <script src="templates/circle.js"></script>
+    <script src="templates/form.js"></script>
     <script src="templates/headernav.js"></script>
-    <script src="templates/today.js"></script>
+    <script src="templates/taskview.js"></script>
     
   </head>
   <body>
@@ -30,11 +35,17 @@ lang="en-GB" xml:lang="en-GB">
         
       </section>
       
-      <section id="history-section">
+      <section id="annual-section">
         
       </section>
       
     </main>
+    
+    <script src="scripts/generate-n-days.js"></script>
+    <script type="application/javascript">fetchData(0,'Today', 'daily-section')</script>
+    <script type="application/javascript">fetchData(7,'This Week', 'weekly-section')</script>
+    <script type="application/javascript">fetchData(31,'This Month', 'monthly-section')</script>
+    <script type="application/javascript">fetchData(365,'This Year', 'annual-section')</script>
     
     <script src="scripts/add-header.js"type="text/javascript">
     </script>

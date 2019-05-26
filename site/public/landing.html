@@ -17,39 +17,31 @@ lang="en-GB" xml:lang="en-GB">
         <input id="sign-up" type="radio" name="log-sign" onclick="showSignUp()">
         <label for="sign-up">Sign Up</label>
       </div><br>
-      
-      <form id="log-in-form">
+      <form method ="post" id="log-in-form" action="/do/login">
         
         <label>Email:</label>
-        <input type="text"><br>
+        <input name="email" type="text"><br>
         
         <label>Password:</label>
-        <input type="password"><br>
+        <input name="password" type="password"><br>
         
         <input id="log-in-button" type="submit" value="Log In"><br>
         
-        <div class="OAuth-container">
-          <input class="OAuth" type="submit" value="G" formaction="/google">
-          <input class="OAuth" type="submit" value="F" formaction="/facebook">   
-        </div>
       </form>
       
-      <form id="sign-up-form">
+      <form method ="post" id="sign-up-form" action="/do/signup">
         
         <label>Email:</label>
-        <input type="text"><br>
+        <input name="email" type="text"><br>
         
         <label>Password:</label>
-        <input type="password"><br>
+        <input name="password" type="password"><br>
         
         <label>Repeat Password:</label>
-        <input type="password"><br>
+        <input name="password2" type="password"><br>
         
-        <input id="log-in-button" type="submit" value="Sign up"><br>
-        <div class="OAuth-container">
-          <input class="OAuth" type="submit" value="G" formaction="/google">
-          <input class="OAuth" type="submit" value="F" formaction="/facebook">   
-        </div>
+        <input id="sign-up-button" type="submit" value="Sign up"><br>
+          
       </form>  
     </main>
     

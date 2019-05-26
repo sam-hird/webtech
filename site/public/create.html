@@ -31,28 +31,28 @@ lang="en-GB" xml:lang="en-GB">
         
       </div>
       
-      <form id="create-task-form" action="/create/task.js">
+      <form id="create-task-form" action="/do/create/task" method="post">
         
         <label for="task-name">Name:</label><br>
-        <input id="task-name" class="task name" type="text"><br>
+        <input name="name" id="task-name" class="task name" type="text"><br>
         
         <label for="task-due">Due:</label><br>
-        <input id="task-due" class="task due" type="date"><br>
+        <input name="due" id="task-due" class="task due" type="date"><br>
         
         <input id="task-submit" class="task submit" type="submit">
         
       </form>
       
-      <form id="create-goal-form" action="/create/goal.js">
+      <form id="create-goal-form" action="/do/create/goal" method="post">
         
         <label for="goal-name">Name:</label><br>
-        <input id="goal-name" class="goal name" type="text"><br>
+        <input name="name" id="goal-name" class="goal name" type="text"><br>
         
         <label for="goal-notes">Notes:</label><br>
-        <textarea id="goal-notes" class="goal notes" rows="3" maxlength="2000"></textarea><br>
+        <textarea name="notes" id="goal-notes" class="goal notes" rows="3" maxlength="2000"></textarea><br>
         
         <label for="goal-due">Due:</label><br>
-        <input id="goal-due" class="goal due" type="date"><br>
+        <input name="due" id="goal-due" class="goal due" type="date"><br>
         
         <label >Tasks:</label><br>
         <input class="goal-task" type="text" placeholder="Add a task..." onclick="taskAdder(this)" onfocus="taskAdder(this)" > <br>
@@ -61,7 +61,7 @@ lang="en-GB" xml:lang="en-GB">
         
       </form>
       
-      <form id="create-project-form" action="/create/project.js">
+      <form id="create-project-form" action="/do/create/project" method="post">
          
         <label for="project-name">Name:</label><br>
         <input id="project-name" class="project name" type="text"><br>
