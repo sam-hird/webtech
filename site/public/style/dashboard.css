@@ -16,7 +16,7 @@ article{
 
 #today-section{
   min-height: 25em;
-  background-color: darkgreen;
+  background-color: white;
   max-height: 30em;
   
   display: flex;
@@ -24,7 +24,7 @@ article{
 }
 
 #projects-section{
-  background-color: lightslategray;
+  background-color: white;
   
   flex-grow: 1;
   
@@ -36,12 +36,13 @@ section, aside{
   box-sizing: border-box;
   margin: 1em;
   padding: 1em;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   
 }
 
 aside{
-  background-color: darkblue;
-  min-width: 200px;
+  background-color: white;
+  min-width: 400px;
   margin-left: 0;
   
   display: flex;

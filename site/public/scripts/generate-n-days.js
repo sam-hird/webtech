@@ -10,10 +10,13 @@ today = yyyy + '-' + mm + '-' + dd;
 
 //fetchData(0);
 
+var checklists = [];
+var ids = [];
 
 
 function fetchData(nDays, title, elementID){
   var checklist={
+    id: elementID,
     title: title,
     goals: [],
     tasks : []
@@ -35,8 +38,10 @@ function fetchData(nDays, title, elementID){
         if(goalReq.readyState === 4 && goalReq.status === 200) {
           //add goals to checklist
           checklist.goals = JSON.parse(goalReq.response);
+          checklists[elementID] = checklist;
+          ids.push(elementID);
           console.log(goalReq.response);
-          render(elementID, checklist);
+          render(checklist);
         }
       };
       goalReq.send();
@@ -88,41 +93,49 @@ function circleCalc(checklist){
   return circle;
 }
 
-function toggleTask(taskID){
-  //compute totals for all goal tasks
-  checklist.goals.forEach(function(goal){
-    goal.tasks.forEach(function(task){
-      if(task.id == taskID) { 
-        //toggle task in memory
-        task.complete = (task.complete == 0 ? 1:0); 
-        //request server to update db entry for this task
-        var request = new XMLHttpRequest(),
-          method = "GET",
-          url = "../do/update/task?taskID=" + taskID + "&completed=" + task.complete;
+function toggleTask(taskID, checkbox){
+  
+  //request server to update db entry for this task
+  var request = new XMLHttpRequest(),
+      method = "GET",
+      url = "../do/update/task?taskID=" + taskID + "&completed=" + (checkbox.checked?1:0);
 
-        request.open(method, url, true);
-        request.send();
+  request.open(method, url, true);
+  request.send();
+  
+  //change data in memory
+  //check all checklists
+  console.log(checklists);
+  ids.forEach(function(id){
+    var checklist = checklists[id];
+    //search each goal of current checklist
+    checklist.goals.forEach(function(goal){
+      //search each task of current goal
+      goal.tasks.forEach(function(task){
+        if(task.id == taskID) { 
+          //toggle task in memory
+          task.complete = (task.complete == 0 ? 1:0); 
+          //update form
+          render(checklist);
         }
       });
     });
-
-  //compute totals for all plain tasks
-  checklist.tasks.forEach(function(task){
+    //search all tasks of current checklist
+    checklist.tasks.forEach(function(task){
       if(task.id == taskID) { 
         //toggle task in memory
         task.complete = (task.complete == 0 ? 1:0); 
-        //request server to update db entry for this task
-        var request = new XMLHttpRequest(),
-            method = "GET",
-            url = "../do/update/task?taskID=" + taskID + "&completed=" + task.complete;
-
-        request.open(method, url, true);
-        request.send();
+        //update form
+        render(checklist);
       }
+    });
   });
+
+  
 }
 
-function render(elementID, checklist){
+function render(checklist){
+  var elementID = checklist.id;
   var circle = circleCalc(checklist);
   var context = {checklist, circle};
 

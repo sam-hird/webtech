@@ -18,6 +18,9 @@ body{
   align-items: center;
   position: relative;
 }
+h1{
+  font-size: 3em;
+}
 #bg-img{
   position: absolute;
   top: 0;
@@ -97,6 +100,11 @@ form{
   display: none;
 }
 #log-in-button{
+  font-size: 1em;
+  padding: 0.3em 0.5em
+}
+
+#sign-up-button{
   font-size: 1em;
   padding: 0.3em 0.5em
 }

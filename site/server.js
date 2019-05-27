@@ -131,10 +131,7 @@ async function handle(request, response) {
                 sessionData[session].userID = row.id;
                 
                 //redirect to dashboard page
-                response.writeHead(302, {
-                  'Location': '../dashboard.html'
-                });
-                response.end();
+                deliver(response,"text/plain","login successful");
                 
               } else{
                 //error: password didnt match
@@ -154,36 +151,54 @@ async function handle(request, response) {
     } else if (url.startsWith('/do/signup')){
       handlePOST(request, response, function(parsedBody){
         
-        //check if database contains a user with this email
-        var statement = db.prepare("SELECT * FROM users WHERE username = ?");
-        statement.get(parsedBody.email, function(err, row){
-          if (row == undefined){
+        if (validateEmail(parsedBody.email)){
 
-            //check if passwords are the same and at least 8 characters 
-            if (parsedBody.password == parsedBody.password2 &&
-              parsedBody.password.length >= 8){
+          //check if database contains a user with this email
+          var statement = db.prepare("SELECT * FROM users WHERE username = ?");
+          statement.get(parsedBody.email, function(err, row){
+            if (row == undefined){
 
-              //encrypt password
-              cred().hash(parsedBody.password, function(err, hash){
-                if (err) { throw err; } 
-                //prepare input statement
-                var inputStatement = db.prepare("INSERT INTO users (username, passwordhash, datejoined) VALUES (?, ?, ?)");
-                //insert new user into db
-                inputStatement.run([parsedBody.email, hash, Date.now()]);
-                
-                inputStatement.finalize();
-              });
+              //check if passwords are the same and at least 8 characters 
+              if (parsedBody.password == parsedBody.password2 &&
+                parsedBody.password.length >= 8){
 
+                //encrypt password
+                cred().hash(parsedBody.password, function(err, hash){
+                  if (err) { throw err; } 
+                  //prepare input statement
+                  var inputStatement = db.prepare("INSERT INTO users (username, passwordhash, datejoined) VALUES (?, ?, ?)");
+                  //insert new user into db
+                  inputStatement.run([parsedBody.email, hash, Date.now()], function(err){
+                    
+                    //add userID to sessionData
+                    sessionData[session].userID = this.lastID;
+
+                    //redirect to dashboard page
+                    deliver(response,"text/plain","signup successful");
+                    
+                  });
+                  inputStatement.finalize();
+                  
+                  
+                  
+                });
+
+              } else {
+                //return error: password invalid
+                fail(response, 401, "invalid password");
+                console.log("invalid pass");
+              }
             } else {
-              //return error: password invalid
-              console.log("invalid pass");
+              //return error: user already exists
+                fail(response, 401, "email in use");
+              console.log("user exists");
             }
-          } else {
-            //return error: user already exists
-            console.log("user exists");
-          }
-        });
-        statement.finalize();
+          });
+          statement.finalize();
+        } else {
+          //send error
+          fail(response, 401, "invalid email");
+        }
 
       });
       
@@ -316,48 +331,58 @@ async function handle(request, response) {
       var querystring = urlParser.parse(url, true).query;
       parsedQuery = qs.parse(querystring);
       
-      var statement = db.prepare('SELECT goals.name AS goalname, tasks.name AS taskname, '+
+      var statement = db.prepare('SELECT goals.name AS goalname, tasks.name AS taskname, goals.notes AS notes, '+
                                         'goals.id AS goalid, tasks.id AS taskid, tasks.complete AS complete ' +
                                  'FROM goals INNER JOIN tasks ' +
                                  'ON goals.id = tasks.goalid ' +
                                  'WHERE goals.userid = ? '+
                                  'AND goals.datedue BETWEEN ? AND ? '+
                                  'ORDER BY goals.id');
-      statement.all([sessionData[session].userID,
-                     Date.parse(parsedQuery.startDate),
-                     Date.parse(parsedQuery.startDate) + (parsedQuery.nDays * 1000 * 60 * 60 * 24)], 
+      var startDate, endDate;
+      if (Date.parse(parsedQuery.startDate) <= Date.parse(parsedQuery.startDate) + (parsedQuery.nDays * 1000 * 60 * 60 * 24)){
+        startDate = Date.parse(parsedQuery.startDate);
+        endDate = Date.parse(parsedQuery.startDate) + (parsedQuery.nDays * 1000 * 60 * 60 * 24);
+      } else {
+        endDate = Date.parse(parsedQuery.startDate);
+        startDate = Date.parse(parsedQuery.startDate) + (parsedQuery.nDays * 1000 * 60 * 60 * 24);
+      }
+      statement.all([sessionData[session].userID, startDate, endDate], 
                   function(err, rows){
         console.log(rows);
         var nRows = rows.length;
-        //create new goal
-        var currentGoal = {};
-        currentGoal.id   = rows[0].goalid;
-        currentGoal.name = rows[0].goalname;
-        currentGoal.tasks = [];
-        var returnList = [];
-        
-        for (var i = 0; i < nRows; i++) {
-          if(rows[i].goalid != currentGoal.id){
-            //if goalid does not match, push old goal onto list 
-            returnList.push(currentGoal);
-            //then make new goal object
-            currentGoal = {};
-            currentGoal.id   = rows[i].goalid;
-            currentGoal.name = rows[i].goalname;
-            currentGoal.tasks = [];
-          } 
-          var newTask = {id:rows[i].taskid, name:rows[i].taskname, complete:rows[i].complete};
-          currentGoal.tasks.push(newTask);
+        if (nRows != 0){
+          //create new goal
+          var currentGoal = {};
+          currentGoal.id   = rows[0].goalid;
+          currentGoal.name = rows[0].goalname;
+          currentGoal.notes = rows[0].notes;
+          currentGoal.tasks = [];
+          var returnList = [];
+
+          for (var i = 0; i < nRows; i++) {
+            if(rows[i].goalid != currentGoal.id){
+              //if goalid does not match, push old goal onto list 
+              returnList.push(currentGoal);
+              //then make new goal object
+              currentGoal = {};
+              currentGoal.id   = rows[i].goalid;
+              currentGoal.name = rows[i].goalname;
+              currentGoal.notes = rows[i].notes;
+              currentGoal.tasks = [];
+            } 
+            var newTask = {id:rows[i].taskid, name:rows[i].taskname, complete:rows[i].complete};
+            currentGoal.tasks.push(newTask);
+          }
+          returnList.push(currentGoal);
+
+          //return this as a json object
+          let typeHeader = { "Content-Type": "json" };
+          response.writeHead(OK, typeHeader);
+          response.write(JSON.stringify(returnList));
+          response.end();
+
+          console.log(returnList);
         }
-        returnList.push(currentGoal);
-        
-        //return this as a json object
-        let typeHeader = { "Content-Type": "json" };
-        response.writeHead(OK, typeHeader);
-        response.write(JSON.stringify(returnList));
-        response.end();
-        
-        console.log(returnList);
       });
     }
       
@@ -378,6 +403,10 @@ async function handle(request, response) {
   } 
 }
 
+function validateEmail(email){
+  var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+}
 
 function handlePOST(request, response, callback){
   if (request.method == 'POST') {

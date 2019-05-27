@@ -1,0 +1,23 @@
+
+{{#each goals}}
+  <section id="goal-{{id}}" class="goal-container">
+    <div class="goal-header">
+      <div class="title-notes-container">
+        <h2 class="goal-title">{{name}}</h2>
+        <p class="goal-notes">{{notes}}</p>
+      </div>
+      <div class="circle-container">
+        {{> circle circle}}
+      </div>
+    </div>
+
+    <div class="checklist">
+      <h2>Tasks:</h2>
+      {{#each tasks}}
+        <input type="checkbox" name="{{id}}" id="{{id}}" onclick="toggleTask({{id}}, this)" {{#if complete}} checked {{/if}}>
+        <label for="{{id}}">{{name}}</label><br>
+      {{/each}}
+    </div>
+
+  </section>
+{{/each}}

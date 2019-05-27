@@ -11,7 +11,6 @@ lang="en-GB" xml:lang="en-GB">
     
     <script src="scripts/handlebars-v4.1.2.js"></script>
     <script src="templates/headernav.js"></script>
-    <script src="templates/today.js"></script>
     
   </head>
   <body>
@@ -31,7 +30,11 @@ lang="en-GB" xml:lang="en-GB">
         
       </div>
       
-      <form id="create-task-form" action="/do/create/task" method="post">
+      <div id="error-box">
+        <p id="error-message"></p>
+      </div>
+      
+      <form id="create-task-form" >
         
         <label for="task-name">Name:</label><br>
         <input name="name" id="task-name" class="task name" type="text"><br>
@@ -39,7 +42,7 @@ lang="en-GB" xml:lang="en-GB">
         <label for="task-due">Due:</label><br>
         <input name="due" id="task-due" class="task due" type="date"><br>
         
-        <input id="task-submit" class="task submit" type="submit">
+        <input id="task-submit" class="task submit" type="button" value="Go" onclick="doCreateTaskClick(this)">
         
       </form>
       
@@ -57,7 +60,7 @@ lang="en-GB" xml:lang="en-GB">
         <label >Tasks:</label><br>
         <input class="goal-task" type="text" placeholder="Add a task..." onclick="taskAdder(this)" onfocus="taskAdder(this)" > <br>
          
-        <input id="goal-submit" class="goal submit" type="submit" value="Go">
+        <input id="goal-submit" class="goal submit" type="button" value="Go" onclick="doCreateGoalClick(this)">
         
       </form>
       
@@ -75,7 +78,7 @@ lang="en-GB" xml:lang="en-GB">
         <label >Goals:</label><br>
         <input class="project-goal" type="text" placeholder="Add a Goal..." onclick="goalAdder(this)" onfocus="goalAdder(this)" > <br>
          
-        <input id="project-submit" class="project submit" type="submit" value="Go">
+        <input id="project-submit" class="project submit" type="button" value="Go">
         
       </form>
       
